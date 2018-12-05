@@ -22,6 +22,13 @@ bolaRect = bola.get_rect()
 bolaRect.topleft = (bx, by)
 
 # inicializar ladrillos
+ladrillo = pygame.image.load('ladrillo.png')
+ladrillos = []
+for y in range(5):
+    ladrilloY = (y * 24) + 100
+    for x in range(10):
+        ladrilloX = (x * 31) + 245
+        ladrillos.append(Rect(ladrilloX, ladrilloY, ladrillo.get_width(), ladrillo.get_height()))
 
 while True:
 
@@ -31,6 +38,8 @@ while True:
     # dibujar elementos
     ventana.blit(superficie, superficieRect)
     ventana.blit(bola, bolaRect)
+    for l in ladrillos:
+        ventana.blit(ladrillo, l)
 
     # control de eventos
     for event in pygame.event.get():
