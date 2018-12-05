@@ -53,6 +53,27 @@ while True:
         bx += vx
         by += vy
         bolaRect.topleft = (bx, by)
+    # bola golpea superficie
+    if bolaRect.colliderect(superficieRect):
+        by = playerY - 8
+        vy *= -1
+    # golpea limite izquierdo
+    if bx <= 0:
+        bx = 0
+        vx *= -1
+    # golpea limite derecho
+    if bx >= 800 - 8:
+        bx = 800 - 8
+        vx *= -1
+    # golpea limite superior
+    if by <= 0:
+        by = 0
+        vy *= -1
+    # golpea limite inferior
+    if by >= 600 - 8:
+        bolaServida = False
+        bx, by = (24, 200)
+        bolaRect.topleft = (bx, by)
 
     # actualizar pantalla
     pygame.display.update()
