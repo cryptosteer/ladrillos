@@ -83,6 +83,16 @@ while True:
         bolaServida = False
         bx, by = (24, 200)
         bolaRect.topleft = (bx, by)
+    # deteccion de colision
+    colisionI = bolaRect.collidelist(ladrillos)
+    if colisionI >= 0:
+        lc = ladrillos[colisionI]
+        mx = bx + 4
+        if mx > lc.x + lc.width or mx < lc.x:
+            vx *= -1
+        else:
+            vy *= -1
+        del (ladrillos[colisionI])
 
     # actualizar pantalla
     pygame.display.update()
