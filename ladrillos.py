@@ -14,6 +14,12 @@ playerY = 540
 mousex, mousey = 24, playerY
 
 # inicializar bola
+bolaServida = False
+bx, by = (24, 200)
+vx, vy = (6, 6)
+bola = pygame.image.load('bola.png')
+bolaRect = bola.get_rect()
+bolaRect.topleft = (bx, by)
 
 # inicializar ladrillos
 
@@ -24,6 +30,7 @@ while True:
 
     # dibujar elementos
     ventana.blit(superficie, superficieRect)
+    ventana.blit(bola, bolaRect)
 
     # control de eventos
     for event in pygame.event.get():
@@ -36,8 +43,16 @@ while True:
                 superficieRect.topleft = (mousex, playerY)
             else:
                 superficieRect.topleft = (800 - 55, playerY)
+        elif event.type == MOUSEBUTTONUP:
+            if not bolaServida:
+                bolaServida = True
 
     # logica del juego
+    # movimiento de la bola
+    if bolaServida:
+        bx += vx
+        by += vy
+        bolaRect.topleft = (bx, by)
 
     # actualizar pantalla
     pygame.display.update()
